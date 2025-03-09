@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>special surprise for uuu</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffe6f2;
+            padding: 50px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            padding-bottom: 30px;
+        }
+        h1 {
+            color: #ff4081;
+        }
+        p {
+            font-size: 18px;
+        }
+        .hidden-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #ff4081;
+        }
+        button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>i loveeee uuu ujalaaa darlingggggg</h1>
+        <p>u fr just awsome also click the buttons</p>
+        <p>i got infinte reasons of why i love uuu but here are a few</p>
+        
+        <div id="buttons-container">
+            <button onclick="revealMessage(0)">reason 1</button>
+            <button onclick="revealMessage(1)">reason 2</button>
+            <button onclick="revealMessage(2)">reason 3</button>
+            <button onclick="revealMessage(3)">reason 4</button>
+            <button onclick="revealMessage(4)">reason 5</button>
+            <button onclick="revealMessage(5)">reason 6</button>
+            <button onclick="revealMessage(6)">reason 7</button>
+            <button onclick="revealMessage(7)">reason 8</button>
+            <button onclick="revealMessage(8)">reason 9</button>
+            <button onclick="revealMessage(9)">reason 10</button>
+        </div>
+        
+        <p class="hidden-message" id="secretMessage"></p>
+    </div>
+
+    <script>
+        const reasons = [
+            "ur eyes hold galaxies and im lost in their infinity",
+            "ur laughter my fav melody sweeter than any songgg",
+            "every moment with uuu feel like poetry written in starsss",
+            "u r the dream i never wanna wake up fromm",
+            "ur love the magic that color my worldddd",
+            "ur touch ignite a fire in my soul that never fadeee and",
+            "with uuu every heartbeat whisper foreverrr and", 
+            "u r my safe haven and my heart eternal homeeee",
+            "lovin uuu the easiest most beautiful thing i ever doneee",
+            "u r not just my loveee u r my whole universeeee"
+        ];
+
+        function revealMessage(index) {
+            document.getElementById("secretMessage").innerText = reasons[index];
+            document.getElementById("secretMessage").style.display = "block";
+        }
+    </script>
+</body>
+</html>
