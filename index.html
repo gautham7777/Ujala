@@ -1,47 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <!-- Basic SEO Meta Tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="Special Surprise for Ujala ❤️">
-    <meta name="description" content="A heartfelt surprise for Ujala, filled with love and infinite reasons why she's amazing. Click to reveal the love!">
-    <meta name="keywords" content="love, surprise, special, romance, heartfelt, reasons I love you">
-    <meta name="author" content="Gautham">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph Meta Tags (For Social Media) -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="A Special Surprise for Ujala ❤️">
-    <meta property="og:description" content="Click to reveal infinite reasons why I love Ujala!">
-    <meta property="og:image" content="https://yourdomain.com/thumbnail.jpg"> <!-- Replace with your image URL -->
-    <meta property="og:url" content="https://gautham7777.github.io/Ujala/">
-    <meta property="og:site_name" content="Surprise for Ujala">
-
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="A Special Surprise for Ujala ❤️">
-    <meta name="twitter:description" content="Click to reveal infinite reasons why I love Ujala!">
-    <meta name="twitter:image" content="https://yourdomain.com/thumbnail.jpg"> <!-- Replace with your image URL -->
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://gautham7777.github.io/Ujala/">
-
-    <!-- Favicon (optional) -->
-    <link rel="icon" href="https://yourdomain.com/favicon.ico" type="image/x-icon">
-
-    <!-- Schema Markup for Google (Structured Data) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "A Special Surprise for Ujala ❤️",
-      "description": "Click to reveal infinite reasons why I love Ujala!",
-      "url": "https://gautham7777.github.io/Ujala/"
-    }
-    </script>
-
-    <title>Special Surprise for Ujala ❤️</title>
+    <title>special surprise for uuu</title>
     <style>
         body {
             text-align: center;
@@ -85,41 +45,49 @@
 <body>
     <div class="container">
         <h1>i loveeee uuu ujalaaa darlinggg🥹🥹</h1>
-        <p>u fr just awsome also click the buttons🥹</p>
-        <p>i got infinte reasons of why i love uuu, but here are a few🥹</p>
+        <p>u fr just awesome also click the buttons🥹</p>
+        <p>every day from now has a special meaning, click and see🥹</p>
         
-        <div id="buttons-container">
-            <button onclick="revealMessage(0)">reason 1</button>
-            <button onclick="revealMessage(1)">reason 2</button>
-            <button onclick="revealMessage(2)">reason 3</button>
-            <button onclick="revealMessage(3)">reason 4</button>
-            <button onclick="revealMessage(4)">reason 5</button>
-            <button onclick="revealMessage(5)">reason 6</button>
-            <button onclick="revealMessage(6)">reason 7</button>
-            <button onclick="revealMessage(7)">reason 8</button>
-            <button onclick="revealMessage(8)">reason 9</button>
-            <button onclick="revealMessage(9)">reason 10</button>
-        </div>
+        <div id="buttons-container"></div>
         
         <p class="hidden-message" id="secretMessage"></p>
     </div>
 
     <script>
-        const reasons = [
-            "ur eyes hold galaxies, and im lost in their infinity",
-            "ur laughter, my fav melody, sweeter than any songgg",
-            "every moment with uuu, feel like poetry written in starsss",
-            "u r the dream, i never wanna wake up fromm",
-            "ur love, the magic that color my worldddd",
-            "ur touch, ignite a fire in my soul that never fadeee",
-            "with uuu, every heartbeat whisper foreverrr and forever", 
-            "u r my safe haven, and my heart's eternal homeeee",
-            "lovin uuu, the easiest, most beautiful thing i ever doneee",
-            "u r not just my loveee, u r my whole universeeee"
-        ];
+        const startDate = new Date("2025-02-26");
+        const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const buttonsContainer = document.getElementById("buttons-container");
+        const oldQuotes = {
+            "2025-02-26": "You are the melody my heart sings every day ",
+            "2025-02-27": "With every heartbeat, I whisper your name ",
+            "2025-02-28": "Your love is the poetry that fills my soul ",
+            "2025-03-01": "If love had a face, it would look just like you ",
+            "2025-03-02": "Every star in the sky shines brighter because of you ",
+            "2025-03-03": "Your love is my safe haven, my forever home ",
+            "2025-03-04": "No words can capture what you mean to me, but I’ll spend my life trying ",
+            "2025-03-05": "You are the reason my world is filled with magic ",
+            "2025-03-06": "Loving you is like breathing – effortless and essential ",
+            "2025-03-07": "Every moment with you is a love story in itself",
+            "2025-03-08": "I’ll love you today, tomorrow, and forever, my darling ",
+            "2025-03-09": "The night I stayed up just to read your favorite book, the day I shared this little surprise with you, and the moment you sent me all those pictures I adore – this day is forever ours.",
+            "2025-03-10": "My Ujala darling told Jemy she loves me, we kicked each other in Xylem, I took her pen, we walked together, and I found out Adam liked Udhara and held her for a picture during our trip, which left me feeling down."
+        };
 
-        function revealMessage(index) {
-            document.getElementById("secretMessage").innerText = reasons[index];
+        for (let i = 0; i < 13; i++) {
+            let currentDate = new Date(startDate);
+            currentDate.setDate(currentDate.getDate() + i);
+            let formattedDate = `${currentDate.getDate()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getFullYear().toString().slice(-2)}`;
+            let day = daysOfWeek[currentDate.getDay()];
+            let button = document.createElement("button");
+            button.innerText = `${formattedDate} ${day.slice(0, 3)}`;
+            button.onclick = () => revealMessage(currentDate, day);
+            buttonsContainer.appendChild(button);
+        }
+
+        function revealMessage(date, day) {
+            let formattedDate = date.toISOString().split("T")[0];
+            let message = oldQuotes[formattedDate] || `This is a new day: ${formattedDate} (${day})`;
+            document.getElementById("secretMessage").innerText = message;
             document.getElementById("secretMessage").style.display = "block";
         }
     </script>
