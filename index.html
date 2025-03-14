@@ -16,6 +16,7 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
+            /* Removed overflow-y */
         }
         .container {
             background: rgba(255, 255, 255, 0.9);
@@ -24,9 +25,10 @@
             box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
             display: inline-block;
             padding-bottom: 30px;
-            max-width: 600px;
-            margin-top: 10vh;
+            max-width: 650px;
             transition: transform 0.3s ease;
+            margin-top: 20px;
+            /* Removed overflow-y and max-height */
         }
         .container:hover {
             transform: translateY(-5px);
@@ -48,14 +50,21 @@
             color: #ff4081;
             white-space: pre-wrap;
             animation: fadeIn 0.5s ease;
+            /* Removed overflow-y and max-height */
         }
         .hidden-image {
             display: none;
             margin-top: 20px;
             max-width: 100%;
             border-radius: 15px;
-            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 4px 4px 20px rgba(0,0,0,0.2);
             animation: fadeIn 0.5s ease;
+        }
+        #buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
         }
         button {
             background-color: #ff4081;
@@ -66,7 +75,7 @@
             cursor: pointer;
             border-radius: 30px;
             margin: 5px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
         button:hover {
@@ -79,12 +88,7 @@
             font-weight: bold;
         }
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; } to { opacity: 1; }
         }
     </style>
 </head>
@@ -101,34 +105,46 @@
     </div>
 
     <script>
-        const startDate = new Date("2025-02-26");
-        const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         const buttonsContainer = document.getElementById("buttons-container");
+        const secretMessage = document.getElementById("secretMessage");
+        const secretImage = document.getElementById("secretImage");
+
+        // Define quotes exactly as provided:
         const oldQuotes = {
+            "2025-02-26": "thee day we said we loved each other, the day wher everything just got a whole lot better",
+            "2025-02-27": "our 1st dateee (kinda), it was magicall, i was wierd at the beggining but my ujala darling made me comfortable and we spent the day in centre square but the highlight was me and her alone coming back from centre to chittoor so i could drop her offf",
+            "2025-02-28": "Your love is the poetry that fills my soul",
+            "2025-03-01": "If love had a face, it would look just like you",
+            "2025-03-02": "Every star in the sky shines brighter because of you",
+            "2025-03-03": "Your love is my safe haven, my forever home",
+            "2025-03-04": "No words can capture what you mean to me, but I’ll spend my life trying",
+            "2025-03-05": "You are the reason my world is filled with magic",
+            "2025-03-06": "Loving you is like breathing – effortless and essential",
+            "2025-03-07": "Every moment with you is a love story in itself",
+            "2025-03-09": "The night I stayed up just to read your favorite book, the day I shared this little surprise with you, and the moment you sent me all those .",
+            "2025-03-10": "My Ujala darling told Jemy she loves me, we kicked each other in Xylem, I took her pen, we walked together, and I found out Adam liked Udhara and held her for a picture during our trip, which left me feeling down,No matter how the days unfold, through every joy and every ache, you remain the most beautiful part of my story.",
+            "2025-03-11": "First and third periods were free today, so my Ujala darling taught me chemistry while we talked. Jemy missed Wilton, and Hasna playfully hit my back, which made my Ujala darling jealous—and I loved it. My day feels perfect when I'm with her.",
+            "2025-03-12": "Today was hell with **FIVE periods of math** 😩, so I barely got to talk to my Ujala darling. BUTTTT WE **HELD HANDS AT 4:03:54 PM** 😭😭❤️ WHICH IS HUGEEEEEE!!! She also tried to make me jealous 😔, and yeah… it kinda hurt. 🥲 But honestly, even a second of holding her hand feels like forever in the best way. ❤️‍🔥",
+            "2025-03-13": "Okayyy sooo gautham is a meanie he hit me and took my pen (baaddd) maths was funnn coz we kinda sitting together i had funn🎀🎀 it was otherwise a boring dayty anddddd jemyyyy didn't come today(saaddd)😭😭",
             "2025-03-14": "Soooo today was meh coz had special class then ruby jubilee hall then mathsss and couldn't talk to my love which is saddd then had lunch break which was uneventful then had english which again was mehh and yea that's it also he beats mee😭😭 abusive frfr\n\nTodayyyy after Xylem class, me and my Ujala darlinggg went to get the phone, and OMGGG we held hands for sooo longgg 😭❤️ Like, not just a quick hold a proper, heart-racing, time-slowing kinda hold 😩🔥. Andddd we took our FIRST PIC together as just friends ,My heart is still doing backflips"
         };
 
-        for (let i = 0; i < 17; i++) {
-            let currentDate = new Date(startDate);
-            currentDate.setDate(currentDate.getDate() + i);
-            let formattedDate = `${currentDate.getDate()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getFullYear().toString().slice(-2)}`;
-            let day = daysOfWeek[currentDate.getDay()];
-            let button = document.createElement("button");
-            button.innerText = `${formattedDate} ${day.slice(0, 3)}`;
-            if (["26-02-25", "27-02-25", "12-03-25", "14-03-25"].includes(formattedDate)) {
-                button.classList.add("golden-button");
+        // Generate buttons for each date in oldQuotes:
+        Object.keys(oldQuotes).forEach(date => {
+            const button = document.createElement('button');
+            button.textContent = date;
+            button.onclick = () => {
+                secretMessage.textContent = oldQuotes[date];
+                secretMessage.style.display = 'block';
+                // Show image only for March 14
+                secretImage.style.display = (date === '2025-03-14') ? 'block' : 'none';
+            };
+            // Apply golden style only for these dates:
+            if (["2025-02-26", "2025-02-27", "2025-03-12", "2025-03-14"].includes(date)) {
+                button.classList.add('golden-button');
             }
-            button.onclick = () => revealMessage(currentDate, day);
             buttonsContainer.appendChild(button);
-        }
-
-        function revealMessage(date, day) {
-            let formattedDate = date.toISOString().split("T")[0];
-            let message = oldQuotes[formattedDate] || `This is a new day: ${formattedDate} (${day})`;
-            document.getElementById("secretMessage").innerText = message;
-            document.getElementById("secretMessage").style.display = "block";
-            document.getElementById("secretImage").style.display = formattedDate === "2025-03-14" ? "block" : "none";
-        }
+        });
     </script>
 </body>
 </html>
