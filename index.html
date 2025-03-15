@@ -57,7 +57,7 @@
             margin-top: 20px;
             max-width: 100%;
             border-radius: 15px;
-            box-shadow: 4px 4px 20px rgba(0,0,0,0.2);
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
             animation: fadeIn 0.5s ease;
         }
         #buttons-container {
@@ -75,7 +75,7 @@
             cursor: pointer;
             border-radius: 30px;
             margin: 5px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
         button:hover {
@@ -126,7 +126,8 @@
             "2025-03-11": "First and third periods were free today, so my Ujala darling taught me chemistry while we talked. Jemy missed Wilton, and Hasna playfully hit my back, which made my Ujala darling jealous—and I loved it. My day feels perfect when I'm with her.",
             "2025-03-12": "Today was hell with **FIVE periods of math** 😩, so I barely got to talk to my Ujala darling. BUTTTT WE **HELD HANDS AT 4:03:54 PM** 😭😭❤️ WHICH IS HUGEEEEEE!!! She also tried to make me jealous 😔, and yeah… it kinda hurt. 🥲 But honestly, even a second of holding her hand feels like forever in the best way. ❤️‍🔥",
             "2025-03-13": "Okayyy sooo gautham is a meanie he hit me and took my pen (baaddd) maths was funnn coz we kinda sitting together i had funn🎀🎀 it was otherwise a boring dayty anddddd jemyyyy didn't come today(saaddd)😭😭",
-            "2025-03-14": "Soooo today was meh coz had special class then ruby jubilee hall then mathsss and couldn't talk to my love which is saddd then had lunch break which was uneventful then had english which again was mehh and yea that's it also he beats mee😭😭 abusive frfr\n\nTodayyyy after Xylem class, me and my Ujala darlinggg went to get the phone, and OMGGG we held hands for sooo longgg 😭❤️ Like, not just a quick hold a proper, heart-racing, time-slowing kinda hold 😩🔥. Andddd we took our FIRST PIC together as just friends ,My heart is still doing backflips"
+            "2025-03-14": "Soooo today was meh coz had special class then ruby jubilee hall then mathsss and couldn't talk to my love which is saddd then had lunch break which was uneventful then had english which again was mehh and yea that's it also he beats mee😭😭 abusive frfr\n\nTodayyyy after Xylem class, me and my Ujala darlinggg went to get the phone, and OMGGG we held hands for sooo longgg 😭❤️ Like, not just a quick hold a proper, heart-racing, time-slowing kinda hold 😩🔥. Andddd we took our FIRST PIC together as just friends ,My heart is still doing backflips",
+            "2025-03-15": "BORING DAYYY UJALA DIDNT COME TO SCHOOL, soo it suckedd i missssed herr sooo muchhh, stilll was always on my mind"
         };
 
         // Generate buttons for each date in oldQuotes:
@@ -136,7 +137,7 @@
             button.onclick = () => {
                 secretMessage.textContent = oldQuotes[date];
                 secretMessage.style.display = 'block';
-                // Show image only for March 14
+                // Show image only when March 14 is clicked:
                 secretImage.style.display = (date === '2025-03-14') ? 'block' : 'none';
             };
             // Apply golden style only for these dates:
