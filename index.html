@@ -16,18 +16,19 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            overflow-y: auto;
+            /* No scroll properties added */
         }
         .container {
             background: rgba(255, 255, 255, 0.9);
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 4px 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
             display: inline-block;
             padding-bottom: 30px;
             max-width: 650px;
             transition: transform 0.3s ease;
             margin-top: 20px;
+            /* No overflow properties */
         }
         .container:hover {
             transform: translateY(-5px);
@@ -55,7 +56,7 @@
             margin-top: 20px;
             max-width: 100%;
             border-radius: 15px;
-            box-shadow: 4px 4px 20px rgba(0,0,0,0.2);
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
             animation: fadeIn 0.5s ease;
         }
         #buttons-container {
@@ -73,7 +74,7 @@
             cursor: pointer;
             border-radius: 30px;
             margin: 5px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
         button:hover {
@@ -107,7 +108,7 @@
         const secretMessage = document.getElementById("secretMessage");
         const secretImage = document.getElementById("secretImage");
 
-        // Define quotes exactly as provided
+        // Define quotes exactly as provided:
         const oldQuotes = {
             "2025-02-26": "thee day we said we loved each other, the day wher everything just got a whole lot better",
             "2025-02-27": "our 1st dateee (kinda), it was magicall, i was wierd at the beggining but my ujala darling made me comfortable and we spent the day in centre square but the highlight was me and her alone coming back from centre to chittoor so i could drop her offf",
@@ -127,7 +128,9 @@
             "2025-03-14": "Soooo today was meh coz had special class then ruby jubilee hall then mathsss and couldn't talk to my love which is saddd then had lunch break which was uneventful then had english which again was mehh and yea that's it also he beats mee😭😭 abusive frfr\n\nTodayyyy after Xylem class, me and my Ujala darlinggg went to get the phone, and OMGGG we held hands for sooo longgg 😭❤️ Like, not just a quick hold a proper, heart-racing, time-slowing kinda hold 😩🔥. Andddd we took our FIRST PIC together as just friends ,My heart is still doing backflips",
             "2025-03-15": "BORING DAYYY UJALA DIDNT COME TO SCHOOL, soo it suckedd i missssed herr sooo muchhh, stilll was always on my mind",
             "2025-03-16": "Sooo it was a mehh day I was soo tired and sick but it was bearable because I was texting my loveee and i found out he has a thing for hair tied back",
-            "2025-03-18": "Well today some girl freaking touched my man's face bruh why would she do that even i didn't touch his face and he is MY bf why would she do that okay that's what happened today I am still mad abt it. Okayyy so today was  like good day if u want to look in that way and bad way if u see it like that sooo he bought me chocolate which was sooo sweeettt and that chocolate really helped my stomach pain and we held hands and he didn't flinch away which is a win and he checked my temp 😭😭😭😭"
+            "2025-03-17": "Well today some girl freaking touched my man's face bruh why would she do that even i didn't touch his face and he is MY bf why would she do that okay that's what happened today I am still mad abt it. Okayyy so today was  like good day if u want to look in that way and bad way if u see it like that sooo he bought me chocolate which was sooo sweeettt and that chocolate really helped my stomach pain and we held hands and he didn't flinch away which is a win and he checked my temp 😭😭😭😭",
+            "2025-03-18": "Today sucked, seriously the worst. Me and my Ujala darling didn’t talk at all. She was mad at me because I didn’t talk to her, and I thought she didn’t want to talk to me because she shooed me away when I sat next to her, but it was for obvious reasons. But after school, she sent me a bunch of messages saying sorry, which kinda made me tear up. And honestly, it just hit me how much I want and need her in my life. I love her so much.",
+            "2025-03-19": "Today was a realllyyyy goooddd dayyy i looveeddd ittt so me and gautham talked so muchhhh it was sooo funnn like i am soo happyyyy the class was so peaceful for the first half of the day yea then the absentees came back and i went for xylem and we held handssss i held his arm it was sooo cuteee 😭😭😭 alsooo he has small ahh dih👍👍Alsooo he moved from where he stood so i won't get hit by sunlight😭😭😭But still he has small dih Alsoooo for taking the phone we couldn't go alone so after he went i just said i am going to washroom and went with himmm"
         };
 
         // Generate buttons for each date in oldQuotes:
@@ -137,7 +140,7 @@
             button.onclick = () => {
                 secretMessage.textContent = oldQuotes[date];
                 secretMessage.style.display = 'block';
-                // Show image only for March 14
+                // Show image only for March 14:
                 secretImage.style.display = (date === '2025-03-14') ? 'block' : 'none';
             };
             // Apply golden style only for these dates:
