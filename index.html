@@ -1,154 +1,246 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>special surprise for uuu</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+  <title>special surprise for uuu</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-        body {
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #ff9a9e, #fad0c4);
-            padding: 50px;
-            color: #333;
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            /* No scroll properties added */
-        }
-        .container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
-            display: inline-block;
-            padding-bottom: 30px;
-            max-width: 650px;
-            transition: transform 0.3s ease;
-            margin-top: 20px;
-            /* No overflow properties */
-        }
-        .container:hover {
-            transform: translateY(-5px);
-        }
-        h1 {
-            color: #ff4081;
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-        p {
-            font-size: 18px;
-            color: #555;
-        }
-        .hidden-message {
-            display: none;
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: bold;
-            color: #ff4081;
-            white-space: pre-wrap;
-            animation: fadeIn 0.5s ease;
-        }
-        .hidden-image {
-            display: none;
-            margin-top: 20px;
-            max-width: 100%;
-            border-radius: 15px;
-            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 0.5s ease;
-        }
-        #buttons-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-        }
-        button {
-            background-color: #ff4081;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 30px;
-            margin: 5px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        button:hover {
-            background-color: #ff79a2;
-            transform: scale(1.05);
-        }
-        .golden-button {
-            background-color: gold;
-            color: black;
-            font-weight: bold;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; } to { opacity: 1; }
-        }
-    </style>
+    body {
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      padding: 50px;
+      color: #333;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Password form container */
+    #passwordForm {
+      margin-top: 50px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 4px 4px 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+    #passwordForm h2 {
+      color: #ff4081;
+      margin-bottom: 10px;
+    }
+    /* Change the heading text to "fav kids?" */
+    #passwordForm h2::after {
+      content: "fav kids?";
+      display: block;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    #passwordForm input {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 80%;
+      margin-bottom: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+    #passwordForm button {
+      background-color: #ff4081;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 30px;
+      margin-top: 5px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    #passwordForm button:hover {
+      background-color: #ff79a2;
+      transform: scale(1.05);
+    }
+
+    /* Main site container (hidden by default) */
+    .container {
+      display: none; /* Hidden until password is correct */
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 4px 4px 20px rgba(0,0,0,0.1);
+      max-width: 650px;
+      transition: transform 0.3s ease;
+      margin-top: 20px;
+    }
+    .container:hover {
+      transform: translateY(-5px);
+    }
+
+    h1 {
+      color: #ff4081;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 18px;
+      color: #555;
+    }
+    .hidden-message {
+      display: none;
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #ff4081;
+      white-space: pre-wrap;
+      animation: fadeIn 0.5s ease;
+    }
+    .hidden-image {
+      display: none;
+      margin-top: 20px;
+      max-width: 100%;
+      border-radius: 15px;
+      box-shadow: 4px 4px 20px rgba(0,0,0,0.2);
+      animation: fadeIn 0.5s ease;
+    }
+    #buttons-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+    button.main-btn {
+      background-color: #ff4081; /* Default pink */
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 30px;
+      margin: 5px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    button.main-btn:hover {
+      background-color: #ff79a2;
+      transform: scale(1.05);
+    }
+    .golden-button {
+      background-color: gold !important;
+      color: black !important;
+      font-weight: bold;
+    }
+    .red-button {
+      background-color: red !important;
+      color: white !important;
+      font-weight: bold;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>OUR STORY 🥺</h1>
-        <p>I LOVEE YOUU SOO MUCHH</p>
-        <p>every day from now has a special meaning, click and see🥹</p>
 
-        <div id="buttons-container"></div>
+  <!-- Password Form -->
+  <div id="passwordForm">
+    <h2></h2>
+    <input type="password" id="pwdInput" placeholder="Password">
+    <br>
+    <button onclick="unlockSite()">Enter</button>
+  </div>
 
-        <p class="hidden-message" id="secretMessage"></p>
-        <img src="https://raw.githubusercontent.com/gautham7777/Ujala/main/best.jpg" class="hidden-image" id="secretImage">
-    </div>
+  <!-- Main Site Container -->
+  <div class="container" id="siteContainer">
+    <h1>OUR STORY 🥺</h1>
+    <p>I LOVEE YOUU SOO MUCHH</p>
+    <p>every day from now has a special meaning, click and see🥹</p>
 
-    <script>
-        const buttonsContainer = document.getElementById("buttons-container");
-        const secretMessage = document.getElementById("secretMessage");
-        const secretImage = document.getElementById("secretImage");
+    <div id="buttons-container"></div>
 
-        // Define quotes exactly as provided:
-        const oldQuotes = {
-            "2025-02-26": "thee day we said we loved each other, the day wher everything just got a whole lot better",
-            "2025-02-27": "our 1st dateee (kinda), it was magicall, i was wierd at the beggining but my ujala darling made me comfortable and we spent the day in centre square but the highlight was me and her alone coming back from centre to chittoor so i could drop her offf",
-            "2025-02-28": "Your love is the poetry that fills my soul",
-            "2025-03-01": "If love had a face, it would look just like you",
-            "2025-03-02": "Every star in the sky shines brighter because of you",
-            "2025-03-03": "Your love is my safe haven, my forever home",
-            "2025-03-04": "No words can capture what you mean to me, but I’ll spend my life trying",
-            "2025-03-05": "You are the reason my world is filled with magic",
-            "2025-03-06": "Loving you is like breathing – effortless and essential",
-            "2025-03-07": "Every moment with you is a love story in itself",
-            "2025-03-09": "The night I stayed up just to read your favorite book, the day I shared this little surprise with you, and the moment you sent me all those .",
-            "2025-03-10": "My Ujala darling told Jemy she loves me, we kicked each other in Xylem, I took her pen, we walked together, and I found out Adam liked Udhara and held her for a picture during our trip, which left me feeling down,No matter how the days unfold, through every joy and every ache, you remain the most beautiful part of my story.",
-            "2025-03-11": "First and third periods were free today, so my Ujala darling taught me chemistry while we talked. Jemy missed Wilton, and Hasna playfully hit my back, which made my Ujala darling jealous—and I loved it. My day feels perfect when I'm with her.",
-            "2025-03-12": "Today was hell with **FIVE periods of math** 😩, so I barely got to talk to my Ujala darling. BUTTTT WE **HELD HANDS AT 4:03:54 PM** 😭😭❤️ WHICH IS HUGEEEEEE!!! She also tried to make me jealous 😔, and yeah… it kinda hurt. 🥲 But honestly, even a second of holding her hand feels like forever in the best way. ❤️‍🔥",
-            "2025-03-13": "Okayyy sooo gautham is a meanie he hit me and took my pen (baaddd) maths was funnn coz we kinda sitting together i had funn🎀🎀 it was otherwise a boring dayty anddddd jemyyyy didn't come today(saaddd)😭😭",
-            "2025-03-14": "Soooo today was meh coz had special class then ruby jubilee hall then mathsss and couldn't talk to my love which is saddd then had lunch break which was uneventful then had english which again was mehh and yea that's it also he beats mee😭😭 abusive frfr\n\nTodayyyy after Xylem class, me and my Ujala darlinggg went to get the phone, and OMGGG we held hands for sooo longgg 😭❤️ Like, not just a quick hold a proper, heart-racing, time-slowing kinda hold 😩🔥. Andddd we took our FIRST PIC together as just friends ,My heart is still doing backflips",
-            "2025-03-15": "BORING DAYYY UJALA DIDNT COME TO SCHOOL, soo it suckedd i missssed herr sooo muchhh, stilll was always on my mind",
-            "2025-03-16": "Sooo it was a mehh day I was soo tired and sick but it was bearable because I was texting my loveee and i found out he has a thing for hair tied back",
-            "2025-03-17": "Well today some girl freaking touched my man's face bruh why would she do that even i didn't touch his face and he is MY bf why would she do that okay that's what happened today I am still mad abt it. Okayyy so today was  like good day if u want to look in that way and bad way if u see it like that sooo he bought me chocolate which was sooo sweeettt and that chocolate really helped my stomach pain and we held hands and he didn't flinch away which is a win and he checked my temp 😭😭😭😭",
-            "2025-03-18": "Today sucked, seriously the worst. Me and my Ujala darling didn’t talk at all. She was mad at me because I didn’t talk to her, and I thought she didn’t want to talk to me because she shooed me away when I sat next to her, but it was for obvious reasons. But after school, she sent me a bunch of messages saying sorry, which kinda made me tear up. And honestly, it just hit me how much I want and need her in my life. I love her so much.",
-            "2025-03-19": "Today was a realllyyyy goooddd dayyy i looveeddd ittt so me and gautham talked so muchhhh it was sooo funnn like i am soo happyyyy the class was so peaceful for the first half of the day yea then the absentees came back and i went for xylem and we held handssss i held his arm it was sooo cuteee 😭😭😭 alsooo he has small ahh dih👍👍Alsooo he moved from where he stood so i won't get hit by sunlight😭😭😭But still he has small dih Alsoooo for taking the phone we couldn't go alone so after he went i just said i am going to washroom and went with himmm"
-        };
+    <p class="hidden-message" id="secretMessage"></p>
+    <img class="hidden-image" id="secretImage">
+  </div>
 
-        // Generate buttons for each date in oldQuotes:
-        Object.keys(oldQuotes).forEach(date => {
-            const button = document.createElement('button');
-            button.textContent = date;
-            button.onclick = () => {
-                secretMessage.textContent = oldQuotes[date];
-                secretMessage.style.display = 'block';
-                // Show image only for March 14:
-                secretImage.style.display = (date === '2025-03-14') ? 'block' : 'none';
-            };
-            // Apply golden style only for these dates:
-            if (["2025-02-26", "2025-02-27", "2025-03-12", "2025-03-14"].includes(date)) {
-                button.classList.add('golden-button');
-            }
-            buttonsContainer.appendChild(button);
-        });
-    </script>
+  <script>
+    function unlockSite() {
+      const pwd = document.getElementById('pwdInput').value;
+      if (pwd === 'megatronsavitar') {
+        document.getElementById('passwordForm').style.display = 'none';
+        document.getElementById('siteContainer').style.display = 'block';
+      } else {
+        alert('Wrong password!');
+      }
+    }
+
+    const buttonsContainer = document.getElementById("buttons-container");
+    const secretMessage = document.getElementById("secretMessage");
+    const secretImage = document.getElementById("secretImage");
+
+    // Define quotes exactly as provided:
+    const oldQuotes = {
+      "2025-02-26": "thee day we said we loved each other, the day wher everything just got a whole lot better",
+      "2025-02-27": "our 1st dateee (kinda), it was magicall, i was wierd at the beggining but my ujala darling made me comfortable and we spent the day in centre square but the highlight was me and her alone coming back from centre to chittoor so i could drop her offf",
+      "2025-02-28": "Your love is the poetry that fills my soul",
+      "2025-03-01": "If love had a face, it would look just like you",
+      "2025-03-02": "Every star in the sky shines brighter because of you",
+      "2025-03-03": "Your love is my safe haven, my forever home",
+      "2025-03-04": "No words can capture what you mean to me, but I’ll spend my life trying",
+      "2025-03-05": "You are the reason my world is filled with magic",
+      "2025-03-06": "Loving you is like breathing – effortless and essential",
+      "2025-03-07": "Every moment with you is a love story in itself",
+      "2025-03-09": "The night I stayed up just to read your favorite book, the day I shared this little surprise with you, and the moment you sent me all those .",
+      "2025-03-10": "My Ujala darling told Jemy she loves me, we kicked each other in Xylem, I took her pen, we walked together, and I found out Adam liked Udhara and held her for a picture during our trip, which left me feeling down,No matter how the days unfold, through every joy and every ache, you remain the most beautiful part of my story.",
+      "2025-03-11": "First and third periods were free today, so my Ujala darling taught me chemistry while we talked. Jemy missed Wilton, and Hasna playfully hit my back, which made my Ujala darling jealous—and I loved it. My day feels perfect when I'm with her.",
+      "2025-03-12": "Today was hell with **FIVE periods of math** 😩, so I barely got to talk to my Ujala darling. BUTTTT WE **HELD HANDS AT 4:03:54 PM** 😭😭❤️ WHICH IS HUGEEEEEE!!! She also tried to make me jealous 😔, and yeah… it kinda hurt. 🥲 But honestly, even a second of holding her hand feels like forever in the best way. ❤️‍🔥",
+      "2025-03-13": "Okayyy sooo gautham is a meanie he hit me and took my pen (baaddd) maths was funnn coz we kinda sitting together i had funn🎀🎀 it was otherwise a boring dayty anddddd jemyyyy didn't come today(saaddd)😭😭",
+      "2025-03-14": "Soooo today was meh coz had special class then ruby jubilee hall then mathsss and couldn't talk to my love which is saddd then had lunch break which was uneventful then had english which again was mehh and yea that's it also he beats mee😭😭 abusive frfr\n\nTodayyyy after Xylem class, me and my Ujala darlinggg went to get the phone, and OMGGG we held hands for sooo longgg 😭❤️ Like, not just a quick hold a proper, heart-racing, time-slowing kinda hold 😩🔥. Andddd we took our FIRST PIC together as just friends ,My heart is still doing backflips",
+      "2025-03-15": "BORING DAYYY UJALA DIDNT COME TO SCHOOL, soo it suckedd i missssed herr sooo muchhh, stilll was always on my mind",
+      "2025-03-16": "Sooo it was a mehh day I was soo tired and sick but it was bearable because I was texting my loveee and i found out he has a thing for hair tied back",
+      "2025-03-17": "Well today some girl freaking touched my man's face bruh why would she do that even i didn't touch his face and he is MY bf why would she do that okay that's what happened today I am still mad abt it. Okayyy so today was  like good day if u want to look in that way and bad way if u see it like that sooo he bought me chocolate which was sooo sweeettt and that chocolate really helped my stomach pain and we held hands and he didn't flinch away which is a win and he checked my temp 😭😭😭😭",
+      "2025-03-18": "Today sucked, seriously the worst. Me and my Ujala darling didn’t talk at all. She was mad at me because I didn’t talk to her, and I thought she didn’t want to talk to me because she shooed me away when I sat next to her, but it was for obvious reasons. But after school, she sent me a bunch of messages saying sorry, which kinda made me tear up. And honestly, it just hit me how much I want and need her in my life. I love her so much.",
+      "2025-03-19": "Today was a realllyyyy goooddd dayyy i looveeddd ittt so me and gautham talked so muchhhh it was sooo funnn like i am soo happyyyy the class was so peaceful for the first half of the day yea then the absentees came back and i went for xylem and we held handssss i held his arm it was sooo cuteee 😭😭😭 alsooo he has small ahh dih👍👍Alsooo he moved from where he stood so i won't get hit by sunlight😭😭😭But still he has small dih Alsoooo for taking the phone we couldn't go alone so after he went i just said i am going to washroom and went with himmm",
+      "2025-03-20": "Today was a realllyyyy goooddd dayyy i looveeddd ittt so me and gautham talked so muchhhh it was sooo funnn like i am soo happyyyy the class was so peaceful for the first half of the day yea then the absentees came back and i went for xylem and we held handssss i held his arm it was sooo cuteee 😭😭😭 alsooo he has small ahh dih👍👍Alsooo he moved from where he stood so i won't get hit by sunlight😭😭😭But still he has small dih Alsoooo for taking the phone we couldn't go alone so after he went i just said i am going to washroom and went with himmm\n\nYesterday was a goooodddd dayyy like bro we held hands like I leaned into him😭😭😭 and   we took photos and oh my god all i could think abt was how I wanted to hug him like fuckkk and at night welll it was soo hot we freaking dirty talked like it started as idk how it started we talked we flirted we talked abt what we want to do to each other like fuck eachother and all and i got sooo wet and gautham got hard as per him brooo when he called me a slut i folded and we made a bet that like he said I won't masturbate yesterday and I told I will and I did it i put fingers inside me thinking that it was his and i thought abt him fucking me and i thought abt him eating me oh my god it was soooo hotttttttt and I moaned his name and gautham was rock hard as per him and he couldn't even type and as per him he also did it soooo yeaa that's it i suppose",
+      "2025-03-21": "Todayyyyy was an amazing day for like till 8th period like I was soooo happyyy till 8th period i was smiling during class randomly😭😭😭I was looking at my love whole dayyyyy he couldn't keep eye contact with me(skill issue) coz it is \"hard\"  and he accused me of not doing it but i did it yeaaa after 8th idk why I was sad and me and gautham didn't walk together today coz he had class and I was alone like I was walking with Wilton and jemy then decided to give them privacy then I walked alone and then me and hanna walked together and we ate kulfi and went home"
+    };
+
+    // Build buttons for each date
+    Object.keys(oldQuotes).forEach(date => {
+      const button = document.createElement('button');
+      button.classList.add('main-btn');
+      button.textContent = date;
+      button.onclick = () => {
+        secretMessage.textContent = oldQuotes[date];
+        secretMessage.style.display = 'block';
+        // Show image for March 14 or March 20 as specified:
+        if (date === '2025-03-14') {
+          secretImage.src = "https://raw.githubusercontent.com/gautham7777/Ujala/main/best.jpg";
+          secretImage.style.display = 'block';
+        }
+        else if (date === '2025-03-20') {
+          secretImage.src = "https://raw.githubusercontent.com/gautham7777/Ujala/main/best2.jpg";
+          secretImage.style.display = 'block';
+        }
+        else {
+          secretImage.style.display = 'none';
+        }
+      };
+
+      // Apply golden style for these dates:
+      if (["2025-02-26", "2025-02-27", "2025-03-12", "2025-03-14"].includes(date)) {
+        button.classList.add('golden-button');
+      }
+      // Apply red style for March 20:
+      if (date === "2025-03-20") {
+        button.classList.add('red-button');
+      }
+
+      buttonsContainer.appendChild(button);
+    });
+  </script>
 </body>
 </html>
