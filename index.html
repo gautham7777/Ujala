@@ -32,7 +32,7 @@
       color: #ff4081;
       margin-bottom: 10px;
     }
-    /* Change the heading text to "fav kids?" */
+    /* Change heading text to "fav kids?" using pseudo-element */
     #passwordForm h2::after {
       content: "fav kids?";
       display: block;
@@ -67,7 +67,7 @@
 
     /* Main site container (hidden by default) */
     .container {
-      display: none; /* Hidden until password is correct */
+      display: none;
       background: rgba(255, 255, 255, 0.9);
       padding: 30px;
       border-radius: 20px;
@@ -113,7 +113,7 @@
       gap: 8px;
     }
     button.main-btn {
-      background-color: #ff4081; /* Default pink */
+      background-color: #ff4081; /* default pink */
       color: white;
       border: none;
       padding: 12px 24px;
@@ -140,7 +140,7 @@
     }
     @keyframes fadeIn {
       from { opacity: 0; }
-      to   { opacity: 1; }
+      to { opacity: 1; }
     }
   </style>
 </head>
@@ -181,7 +181,7 @@
     const secretMessage = document.getElementById("secretMessage");
     const secretImage = document.getElementById("secretImage");
 
-    // Define quotes exactly as provided:
+    // All your quotes exactly as provided:
     const oldQuotes = {
       "2025-02-26": "thee day we said we loved each other, the day wher everything just got a whole lot better",
       "2025-02-27": "our 1st dateee (kinda), it was magicall, i was wierd at the beggining but my ujala darling made me comfortable and we spent the day in centre square but the highlight was me and her alone coming back from centre to chittoor so i could drop her offf",
@@ -205,10 +205,13 @@
       "2025-03-18": "Today sucked, seriously the worst. Me and my Ujala darling didn’t talk at all. She was mad at me because I didn’t talk to her, and I thought she didn’t want to talk to me because she shooed me away when I sat next to her, but it was for obvious reasons. But after school, she sent me a bunch of messages saying sorry, which kinda made me tear up. And honestly, it just hit me how much I want and need her in my life. I love her so much.",
       "2025-03-19": "Today was a realllyyyy goooddd dayyy i looveeddd ittt so me and gautham talked so muchhhh it was sooo funnn like i am soo happyyyy the class was so peaceful for the first half of the day yea then the absentees came back and i went for xylem and we held handssss i held his arm it was sooo cuteee 😭😭😭 alsooo he has small ahh dih👍👍Alsooo he moved from where he stood so i won't get hit by sunlight😭😭😭But still he has small dih Alsoooo for taking the phone we couldn't go alone so after he went i just said i am going to washroom and went with himmm",
       "2025-03-20": "Today was a realllyyyy goooddd dayyy i looveeddd ittt so me and gautham talked so muchhhh it was sooo funnn like i am soo happyyyy the class was so peaceful for the first half of the day yea then the absentees came back and i went for xylem and we held handssss i held his arm it was sooo cuteee 😭😭😭 alsooo he has small ahh dih👍👍Alsooo he moved from where he stood so i won't get hit by sunlight😭😭😭But still he has small dih Alsoooo for taking the phone we couldn't go alone so after he went i just said i am going to washroom and went with himmm\n\nYesterday was a goooodddd dayyy like bro we held hands like I leaned into him😭😭😭 and   we took photos and oh my god all i could think abt was how I wanted to hug him like fuckkk and at night welll it was soo hot we freaking dirty talked like it started as idk how it started we talked we flirted we talked abt what we want to do to each other like fuck eachother and all and i got sooo wet and gautham got hard as per him brooo when he called me a slut i folded and we made a bet that like he said I won't masturbate yesterday and I told I will and I did it i put fingers inside me thinking that it was his and i thought abt him fucking me and i thought abt him eating me oh my god it was soooo hotttttttt and I moaned his name and gautham was rock hard as per him and he couldn't even type and as per him he also did it soooo yeaa that's it i suppose",
-      "2025-03-21": "Todayyyyy was an amazing day for like till 8th period like I was soooo happyyy till 8th period i was smiling during class randomly😭😭😭I was looking at my love whole dayyyyy he couldn't keep eye contact with me(skill issue) coz it is \"hard\"  and he accused me of not doing it but i did it yeaaa after 8th idk why I was sad and me and gautham didn't walk together today coz he had class and I was alone like I was walking with Wilton and jemy then decided to give them privacy then I walked alone and then me and hanna walked together and we ate kulfi and went home"
+      "2025-03-21": "Todayyyyy was an amazing day for like till 8th period like I was soooo happyyy till 8th period i was smiling during class randomly😭😭😭I was looking at my love whole dayyyyy he couldn't keep eye contact with me(skill issue) coz it is \"hard\"  and he accused me of not doing it but i did it yeaaa after 8th idk why I was sad and me and gautham didn't walk together today coz he had class and I was alone like I was walking with Wilton and jemy then  decided to give them privacy then I walked alone and then me and hanna walked together and we ate kulfi and went home and at night we were flirting too much i got wet and he got hard and holy shit we masturbated together omg the things he said 😭😭😭 like whoaaaaa I just folded like bro he is soooo goood I came for him to his words also I made him cum ig that was just amazing😭😭😭It started as fun like him replying to a reel saying the most he can do is touch himself and I said do it and he started touching himself while I text him what I am go While i text him what I am going to do to him and he came and while I was texting him what i will do to him I was getting wetter and wetter and i couldn't do it like bro it was sooo hot knowing that I am the reason he is touching himself and after he came he talked abt what he imagined and I came to that it was soooo fucking hot😭😭😭😭",
+      "2025-03-22": `So yesterday was just soo hot like we started sending reels and the reels were obv dirty and at afternoon he freaking turn me on he said what all he going to do and suddenly stopped I was so annoyed he freaking turned me on and did nothing so I turned him on and did nothing hahahahaa and I told we will do it at night and we were waiting for night and at night oh my god the things he said is the most unholiest things and i loooveeeeedd ittttt I touched myself hearing him say it not exactly hearing but yea it was sooo hot and I came and i couldn't think straight when I was making him cum idk what the hell i was saying coz I couldn't think and when he said he was laying naked and his stomach was covered in his cum omg i felt idkk soo hot and yeaaa that's it
+
+Startred out as a normal day but during like 3 i madeee ujala turnn onn cuz it was funny i told her what all things i would do to her and what my hands will do to her body and all cuz its funny but then i stopped to make her suffer buahahah bbut then she made me turnn on which was soo cruel but fair so we decided to masturbate together at night so was just waiting for it to be night and like i went 1st to make her cum i told how i would fuck her and the things my cock will do to her and she came and then she made me cum by saying what all she will do to me like sucking and stroking my cock which made mee cum and i had to just lay there in my cum cuz i was out of breath, this was all sooooo hott we bascially had online sex for 2 days straigh 🥵🥵`
     };
 
-    // Build buttons for each date
+    // Generate buttons for each date in oldQuotes:
     Object.keys(oldQuotes).forEach(date => {
       const button = document.createElement('button');
       button.classList.add('main-btn');
@@ -234,8 +237,8 @@
       if (["2025-02-26", "2025-02-27", "2025-03-12", "2025-03-14"].includes(date)) {
         button.classList.add('golden-button');
       }
-      // Apply red style for March 20:
-      if (date === "2025-03-20") {
+      // Apply red style for March 20, March 21, and March 22:
+      if (date === "2025-03-20" || date === "2025-03-21" || date === "2025-03-22") {
         button.classList.add('red-button');
       }
 
