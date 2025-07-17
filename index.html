@@ -1,304 +1,433 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>special surprise for uuu</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message For You</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            background: linear-gradient(270deg, #ffdde1, #ee9ca7, #ffdde1);
+            background-size: 600% 600%;
+            animation: gradient-animation 16s ease infinite;
+            cursor: default;
+        }
 
-    body {
-      text-align: center;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #ff9a9e, #fad0c4);
-      padding: 50px;
-      color: #333;
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    /* Password form container */
-    #passwordForm {
-      margin-top: 50px;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 4px 4px 20px rgba(0,0,0,0.1);
-      max-width: 400px;
-      width: 100%;
-    }
-    #passwordForm h2 {
-      color: #ff4081;
-      margin-bottom: 10px;
-    }
-    /* heading => fav kids? */
-    #passwordForm h2::after {
-      content: "fav kids?";
-      display: block;
-      font-size: 24px;
-      font-weight: bold;
-    }
-    #passwordForm input {
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      width: 80%;
-      margin-bottom: 10px;
-      font-size: 16px;
-      outline: none;
-    }
-    #passwordForm button {
-      background-color: #ff4081;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 30px;
-      margin-top: 5px;
-      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-    #passwordForm button:hover {
-      background-color: #ff79a2;
-      transform: scale(1.05);
-    }
+        .cursive {
+            font-family: 'Great Vibes', cursive;
+            text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            font-weight: 400;
+        }
+        .message-container {
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            min-height: 12rem;
+        }
+        .particle, .confetti {
+            position: absolute;
+            pointer-events: none;
+            z-index: -1;
+            border-radius: 50%;
+        }
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 123, 123, 0.8);
+            transform: rotate(-45deg);
+            animation: float 12s infinite;
+            opacity: 0;
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 123, 123, 0.8);
+            border-radius: 50%;
+        }
+        .heart::before { top: -10px; left: 0; }
+        .heart::after { top: 0; left: 10px; }
 
-    /* Main site container (hidden by default) */
-    .container {
-      display: none;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 4px 4px 20px rgba(0,0,0,0.1);
-      max-width: 650px;
-      transition: transform 0.3s ease;
-      margin-top: 20px;
-    }
-    .container:hover {
-      transform: translateY(-5px);
-    }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(-45deg) scale(0.8); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) rotate(-45deg) scale(1.5); opacity: 0; }
+        }
 
-    h1 {
-      color: #ff4081;
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 18px;
-      color: #555;
-    }
-    .hidden-message {
-      display: none;
-      margin-top: 20px;
-      font-size: 20px;
-      font-weight: bold;
-      color: #ff4081;
-      white-space: pre-wrap;
-      animation: fadeIn 0.5s ease;
-    }
-    .hidden-image {
-      display: none;
-      margin-top: 20px;
-      max-width: 100%;
-      border-radius: 15px;
-      box-shadow: 4px 4px 20px rgba(0,0,0,0.2);
-      animation: fadeIn 0.5s ease;
-    }
-    #buttons-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-    }
-    button.main-btn {
-      background-color: #ff4081; /* default pink */
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 30px;
-      margin: 5px;
-      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-    button.main-btn:hover {
-      background-color: #ff79a2;
-      transform: scale(1.05);
-    }
-    .golden-button {
-      background-color: gold !important;
-      color: black !important;
-      font-weight: bold;
-    }
-    .red-button {
-      background-color: red !important;
-      color: white !important;
-      font-weight: bold;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-  </style>
-</head>
-<body>
+        .action-button {
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+            padding: 0.75rem 1rem;
+            flex-grow: 1;
+        }
+        .action-button:hover {
+            transform: scale(1.10) !important;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+        .action-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+            transform: scale(1) !important;
+            background-image: none !important;
+        }
+        .main-button {
+            animation: pulse 2.5s infinite;
+            background: linear-gradient(45deg, #ec4899, #f472b6);
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+        }
+        .main-button:disabled {
+            animation: none;
+        }
 
-  <!-- Password Form -->
-  <div id="passwordForm">
-    <h2></h2>
-    <input type="password" id="pwdInput" placeholder="Password">
-    <br>
-    <button onclick="unlockSite()">Enter</button>
-  </div>
-
-  <!-- Main Site Container -->
-  <div class="container" id="siteContainer">
-    <h1>OUR STORY 🥺</h1>
-    <p>I LOVEE YOUU SOO MUCHH</p>
-    <p>every day from now has a special meaning, click and see🥹</p>
-
-    <div id="buttons-container"></div>
-
-    <p class="hidden-message" id="secretMessage"></p>
-    <img class="hidden-image" id="secretImage">
-  </div>
-
-  <script>
-    function unlockSite() {
-      const pwd = document.getElementById('pwdInput').value;
-      if (pwd === 'megatronsavitar') {
-        document.getElementById('passwordForm').style.display = 'none';
-        document.getElementById('siteContainer').style.display = 'block';
-      } else {
-        alert('Wrong password!');
-      }
-    }
-
-    const buttonsContainer = document.getElementById("buttons-container");
-    const secretMessage = document.getElementById("secretMessage");
-    const secretImage = document.getElementById("secretImage");
-
-    // All your quotes exactly as provided
-    const oldQuotes = {
-      "2025-02-26": "The day we said we loved each other – the day everything just got a whole lot better.",
-      "2025-02-27": "Our first dateee (kinda), it was magicalll. I was weird at the beginning but my Ujala darling made me feel comfortable. We spent the day in Centre Square, but the highlight was just me and her alone coming back from Centre to Chittoor so I could drop her off.",
-      "2025-02-28": "Your love is the poetry that fills my soul.",
-      "2025-03-01": "If love had a face, it would look just like you.",
-      "2025-03-02": "Every star in the sky shines brighter because of you.",
-      "2025-03-03": "Your love is my safe haven, my forever home.",
-      "2025-03-04": "No words can capture what you mean to me, but I’ll spend my life trying.",
-      "2025-03-05": "You are the reason my world is filled with magic.",
-      "2025-03-06": "Loving you is like breathing – effortless and essential.",
-      "2025-03-07": "Every moment with you is a love story in itself.",
-      "2025-03-09": "The night I stayed up just to read your favorite book, the day I shared this little surprise with you, and the moment you sent me all those messages… everything felt so special.",
-      "2025-03-10": "My Ujala darling told Jemy she loves me, we playfully kicked each other in Xylem, I took her pen, we walked together, and I found out Adam liked Udhara and held her for a picture during our trip, which left me feeling a bit down. But no matter how the days unfold, through every joy and every ache, she remains the most beautiful part of my story.",
-      "2025-03-11": "First and third periods were free today, so my Ujala darling taught me chemistry while we talked. Jemy missed Wilton, and Hasna playfully hit my back, which made my Ujala darling jealous—and I kinda loved it. My day feels perfect when I'm with her.",
-      "2025-03-12": "Today was hell with **FIVE periods of math** 😩, so I barely got to talk to my Ujala darling. BUTTTT WE **HELD HANDS AT 4:03:54 PM** 😭😭❤️ WHICH IS HUGEEEEEE!!! She also tried to make me jealous 😔, and yeah… it kinda hurt. 🥲 But even a second of holding her hand feels like forever in the best way. ❤️‍🔥",
-      "2025-03-13": "Okayyy sooo Gautham is a meanie he hit me and took my pen (baaddd). Maths was funnn 'coz we kinda sat together. I had funn🎀🎀 It was otherwise a boring dayty anddddd Jemyyyy didn't come today (saaddd)😭😭",
-      "2025-03-14": "Soooo today was meh 'coz had special class, then Ruby Jubilee Hall, then mathsss and couldn't talk to my love which is saddd. Then had lunch break (uneventful), then English (meh again). Also he teases me too much 😭😭.\n\nBUT after Xylem class, me and my Ujala darlinggg went to get the phone, and OMGGG we held hands for sooo longgg 😭❤️ Not just a quick hold – a proper, heart-racing, time-slowing kinda hold 😩🔥. Andddd we took our FIRST PIC together as just friends. My heart is still doing backflips!",
-      "2025-03-15": "BORING DAYYY. UJALA DIDN’T COME TO SCHOOL, sooo it suckedd. I missssed herr sooo muchhh. Still, she was always on my mind.",
-      "2025-03-16": "Sooo it was a mehh day. I was sooo tired and sick but it was bearable because I was texting my loveee. Also found out he has a thing for hair tied back 😳",
-      "2025-03-17": "Well today some girl touched my man's face and I was like bruhhhh whyyy even I haven’t done that 😭😭. But also today was sweet – he bought me chocolate (helped my stomach pain), we held hands and he didn’t flinch, and he checked my temperature 🥹🥹🥹",
-      "2025-03-18": "Today sucked. We didn’t talk and I thought she didn’t want to talk to me. She shooed me away when I sat next to her, but later I understood why. After school, she sent me the sweetest messages apologizing and I honestly teared up. I love her so much and I need her in my life.",
-      "2025-03-19": "Today was a realllyyyy goooddd dayyy. I looveeddd ittt! Me and Gautham talked a lot and class felt peaceful. During Xylem, we held hands and I held his arm 😭😭😭. He also moved so I wouldn’t get hit by sunlight 😭😭😭. He’s the sweetest.",
-      "2025-03-20": "Another lovely day – talking lots, joking around, holding hands, and just feeling connected. Being close like that is the best thing ever 😭😭😭",
-      "2025-03-21": "Todayyyy was amazing till 8th period – I was smiling randomly in class 😭😭😭. After that I felt down for some reason. We didn’t walk together because he had class, so I walked with friends and then alone for a bit. At night we were flirting and just being silly and close – it felt so special to feel that connection even through texts.",
-      "2025-03-22": "Started as a normal day. We joked around a lot and kept teasing each other playfully. We were both a bit silly and cheeky today but that’s just how we are. Talking with him makes my whole day better. I love him so much.",
-      "2025-03-23": "Soooo todayyy was a goooddd dayyyy. Woke up thinking about him, texted him, got yelled at by mom to get up 😭 then showered and went back to texting. Gautham was being goofy and I loveee himm sooo muchhh 😭😭😭",
-      "2025-03-24": "Yesterday started out meh. I tried leaving early but couldn't, and we didn’t talk during snacks period (SHE WAS IN THE WASHROOM 😭). But during lunch we did talk and that made me smile. Games period was rough – I sat next to her but she seemed annoyed, and then she and Jemy told me to leave (ouch). We didn’t say bye. 😭😭 But later she was super sweet and I’m so proud of her for studying and finishing that worksheet!",
-      "2025-03-25": "Sooo today started as a good day ‘coz we texted in the morning. But he didn’t come to school soooo it was a sad day 😭😭😭😭 I missed him sooo much and I got my period on top of that. Boring, sad ahhh dayyyy.",
-      "2025-03-26": "Yesterday was a nice dayyyy. I held Gautham's arm and leaned into him 😭😭😭. We talked – literally every day with him feels like the best day 😭😭😭.",
-      "2025-03-27": "Today was a really good day. No big reason other than him. I wasn’t all emotional today. He ran to sit near me when Jemy was about to, and we talked for a whole period. We made silly jokes and I caught him looking at me in class 😭😭😭😭",
-      "2025-03-28": "Okayyy sooo today was greatttt. We talked about F1 during snacks – it was sooo comforting. During lunch we had more sweet convos and I couldn't stop staring at him 😭😭😭. After Xylem we held handsssss. His mom and dad dropped me and we held hands in the car 😭😭😭😭 I love him sooo muchhh.",
-      "2025-03-29": "Today was just boring until afternoon, then I was missing Ujala a lot. Talking to her made everything better. She’s always on my mind and makes every moment feel special. I love her so much.",
-      "2025-03-30": "Okayyyy sooo todayyyy was greattttt. We texted each other and he made me smile so much. I went for dance, he went for a movie and still texted me from there 😭😭😭😭 which was sooo cuteeee. Talking to him is home. He is home.",
-      "2025-03-31": "Okayyy so today not much happened. We teased each other a bit and goofed around. It was sweet and fun and I love spending every day with him.",
-      "2025-04-01": "Today was a good day. We talked during breaks and he made me smile a lot. He played basketball and scored 3 shots and I’m sooo proud of him 🏀. That’s it really, a chill good day.",
-      "2025-04-02": "Today was a fun dayyy. I woke him up in the morning, studied, then we texted. At school, we talked during breaks. I had a scary physics test and just wanted a hug. But after that, I played games and scored two baskets 🏀!",
-      "2025-04-03": "Okayyy sooo like today this idiot made me blush while I was on a video call and I couldn’t stop smiling 😭😭😭. He’s sooo annoying but sooo sweet.",
-      "2025-04-04": "Yesterday we sat together in Xylem class 😭😭😭😭. He was being silly and funny and teasing me and it made me laugh and blush. We talked a lot and it was amazing.",
-      "2025-04-05": "Nothing much happened todayy. We did talk a bit. Sreeja ma’am asked Jemy about Wilton and I was scared she’d ask me next 😭😭. Gautham is sick and resting 👍👍",
-      "2025-04-06": "Okay soooo Sunday was uneventful. We didn’t text much because I had a function and he was sleeping, but we did chat a little and that made me smile. That’s all 🩵"
-      "2025-04-07": "Mondayyy was uneventful like nothing much happened we couldn't talk much in class coz no breaks and he had to stay back for computer which sucks that is simply blasphemous and like we couldn't text much either like he went with the guys and then when he came back he slept and at night I missed him sooo much but couldn't even call coz well no privacy.",
-      "2025-04-08": "Todayyy nothing happened other than we not talking in class and him having computer class that is sooo saddd i missed him sooooo muchhhhhh like we can't even spend time together we ain't even talking irl we see each other but I wanna talk to him irl tmr also he has computer ughhhh😭😭😭😭😭",
-      "2025-04-09": "Okay so today nothing happened other than me being sad coz gauuuuthhaaaaaaaaaam didn't text me for hours well it was cuz someone died but I got so sad thinking he was ignoring me yea he said the reason and yea i was happy again",
-      "2025-04-10": "Oh my god yesterday morning me and gauuuuthhaaaaaaaaaam went to school together and in the car we held hands😭😭😭😭 his hand rested on my thighs it was so cuteee and we walked home together after soooooo long it was so good yaayyy",
-      "2025-04-11": "So today me and gauthammm talked a lot which was fun and he went for a movie and his parents are sus and Christeen asked abt us and yea that's it",
-      "2025-04-12": "Sooooo yesterday was a good dayyy we talkeddd like not exactly talk but texted for soooo long in the morning and it was fun also he has a prblm of doing stupid things and i loveee itttt and we talked then he slept then we talked and we talked and he went to help mom but he didn't he just sat there and yapped and i did help mom and we talked and went to sleepppp",
-      "2025-04-13": "Sooo like it's the day before Vishu I went to dance he woke up late then we texted i cleaned we texted and texted and texted",
-      "2025-04-14": "Soooo I woke up realllyy early and he woke up reallyy late we didn't text that much coz cousins at my home and all yea and my parents know gautham which is smthng i suppose and we texted",
-      "2025-04-15": "Okay so today morning we texted 1 hour which i looveeeddd it was sooo fun and then we went to school together and omggg he held my thighs which was sooo sweet i looveeeddd itttt and i thought abt it in class and i was just smiling to myself and after school we couldn't talk and didn't walk together then we texted and played chess and he slept and my brother is sus and we went to study",
-      "2025-04-16": "Okayyy soo on 16 we messaged and ye tas all we do and at night I couldn't sleep for a while and was thinking about him a lot and yea tas it",
-      "2025-04-17": "Well on 17 we texted like yea and we texted me went to temple got back pain and all we texted again yea tas what we do and at night we couldn't talk coz me went to temple to watch Kathakali and it finished at like 2:30 and I messaged him and he woke up from sleep and texted me back and started speaking gibberish yeaa tas it",
-      "2025-04-18": "Soo yesterday was a busy day we didn't text much coz I went to temple cousin's house and Pothy's bought dresses and went to temple again and then we texted yea tas it and I miss him soooo muchhhhhh like I looooveeee him sooooo muchhhhhhhh",
-      "2025-04-19": "Sooo like 19th was amazing he came here to temple and idk if it was coincidence but we could stand together in the line and we talked obv and i talked to mom and we teamed up against him which was soooooo fun and like we went to buy things but couldn't buy coz they didn't have what I wanted and also like gautham couldn't sit near me and he asked this lady near me if he can sit here and she said no and it was an amazing dayyyyyy",
-      "2025-04-20": "Yeaa so nothing much happened on 20 we just texted texted and texted like tas what we do nowadays cuz no school sad",
-      "2025-04-21": "Oh yesterday we texted went through our career plans which was fun and we texted again obv cuz yea and at night we video called which is a milestone like it was only for seconds but we did it yayyy and it made me feel so happy",
-      "2025-04-22": "Okayyy so on 22 I woke up then I woke him up then we did our own things then texted yea tas what we did",
-      "2025-04-23": "So on 23 well I woke up woke him up we texted and texted all day coz what else can we do",
-      "2025-04-24": "On 24 I woke up then I woke him up coz princess needs to be woken up and then we texted and texted",
-      "2025-04-25": "OUuu where to start this day started out greatt liike we played games and all and i won and she won so it was funn and then begins the downfall... my mom saw our msgs and was like wtf man and they were kinda disappointed and all and like ujala darling was sad cuz of this and yea we decided to stop that kind of stuff. Alsooo we did get married through text which was cuteeee af",
-      "2025-04-26": "Well yesterday sucked so today it was all damage control and like i had a movie to go to and like i tried talking with them and my mom and dad are now okay with us and like they said to just study and get a job first then we can do marriage and all now just to focus on studies and like yea they are kinda ok with us and now kinda like ujala but not as much as before but we can improve. Ouu also Jemy and Wilton had a fall out they kinda broke up and like yea that's sad but also kinda good and like me and ujala were consoling them all night and it showed how strong we are like we didn’t even consider breaking up. I love herrrr and yea we will recover from all this AND TODAY IS OUR 2ND MONTH ANNIVERSARYYYY"
-      "2025-04-27": "soo tmr xylem starts soo cant wait for that omg  i wanna see her sooo much like its been soooo longggg",
-      "2025-04-28": "Okay so on 28th I was waiting for that day to happen coz we could finally see each other after uk what happened oh my god it was like such a relief when I saw him it was the best i just wanted to hug him and cry yea and after class we went to big falooda then drank or ate smtng and then HE LEFT ME he got on the bus without even saying bye and yea tas what happened",
-      "2025-04-29": "On 29th we sat together yayyyy and it was good that day he didn't leave me and what happened nothing much happened is sitting together was greatttt like amazingg ohh I loovee itt",
-      "2025-04-30": "On 30th me on trip and we texted at 1 in the morning coz I woke up at 1 and my plan was to just say i love you to him but he woke up and we texted it felt sooo peaceful and what happened nothing much did i got on some rides and it wasn't that bad and yea tas it t",
-      "2025-05-01": "Todayy well we couldn't text much coz me still in wayanad and today wasn't that bad either it was like good and yea tas it",
-      "2025-05-02": "Today for xylem 1st was chem and then maths and jude and sanjo wasnt there so for chem i was alone but for maths me and udhara sat together and we were just talking and laughing a lot during class and after class dhanush waited for us so we couldn’t really hang out just us and then we went to best bakers and she got me a kinder joy batman edition and also she bought us a cake which was good and then i accidentally broke her phone hehehe ig thats it for that day",
-      "2025-05-03": "today there were no xylem and i dont remember wat all happend we just talked a lot and i was soooo sad for ujala leaving for her trip AND TODAY UJALA CAME TO SEE ME LETS GOOOOO",
-      "2025-05-04": "wellll tonight ujala will leave for her trip or like she will sleeep early so its a sad day, it was moms and dads anniversary too",
-      "2025-05-05": "Today I didnt go to xylem cuz like i went out with my sister and today was hellll cuz ujala mostly wasnt online and i was sad wholee day but she did send me a cute pic and it made me smile a lot and like yea thats it, I MISS HER A LOT LIKE NEVER LIKE BEFORE I EVEN MSGED HER A LOT AT NIGHT I LOVEEEEE HERRR",
-      "2025-05-06": "Okay soo i was still in kanyakumari and like we texted more today comparitivily and i saw him looking really cute and like we made a deal to share more of ourselves emotionally and we texted a lot and yea tas it",
-      "2025-05-07": "Okay sooo yesterday we met after a longgg time and like gautham reminded me of our deal and he had to go to scms to collect prize and he couldn’t come and well we talked a lot and hanna teased us tooo much and like we video called and just had the best time talking and laughing and feeling close again it was really special",
-      "2025-05-08": "Well today was well legendary like we talked, hanna teased us and like then we went home and we just texted a lotttttt and honestly it felt sooo good to feel that connected and just share stuff and laugh it out it was such a memorable day",
-      "2025-05-09": "today we just msgd a lot (idk remember what happened i took too long to write todays)", 
-      "2025-05-10": "Well on Saturday it was the day of my dance and we messaged and yayyy we called and talked he was sick that day and it was fun talking to him through call and well ig i did well for my dance and what else yea and nothing",
-      "2025-05-11": "For Sunday well we woke up i meant i woke him up and well we basically texted for the whole day which was fun idk how he felt but it was fun for me and in the evening well we went to study yea tas it",
-      "2025-05-12": "Monday for xylem it was maths and chemistry like the sir was different for maths and it was just me gautham and jude we sat together and for maths class we were just sitting close and it was kinda exciting, we had a lot of fun in chemistry too like he was talking so much and it was sooo cute my baby is sooo cute and after class we went to realme service centre and then went to cake hut and bought this cake lollipop and like uk there was something on my lips and he was like thudach tharate and jude was there and jude was soooo done with us lol i would have loooved it if he had like wiped it for me and then we went to bus stop and like we joked abt how I was being made when they were born eww",
-      "2025-05-13": "Okay for yesterday well it was bio and like class was nice and me and hanna went to best bakers and ate chicken roll and went home and me and gautham texted and called which was fun and i am sick"  
-    }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(236, 72, 153, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0); }
+        }
         
-
-    };
-
-    Object.keys(oldQuotes).forEach(date => {
-      const button = document.createElement('button');
-      button.classList.add('main-btn');
-      button.textContent = date;
-      button.onclick = () => {
-        secretMessage.textContent = oldQuotes[date];
-        secretMessage.style.display = 'block';
-
-        // Show image only for March 14 (best.jpg) or March 20 (best2.jpg)
-        if (date === '2025-03-14') {
-          secretImage.src = "https://raw.githubusercontent.com/gautham7777/Ujala/main/best.jpg";
-          secretImage.style.display = 'block';
+        .confetti {
+            width: 8px;
+            height: 8px;
+            opacity: 0;
+            animation: burst 1s ease-out forwards;
         }
-        else if (date === '2025-03-20') {
-          secretImage.src = "https://raw.githubusercontent.com/gautham7777/Ujala/main/best2.jpg";
-          secretImage.style.display = 'block';
+
+        @keyframes burst {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1.2); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)) rotate(720deg) scale(0); opacity: 0; }
         }
-        else {
-          secretImage.style.display = 'none';
+        
+        #cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #f472b6;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease-out;
         }
-      };
+        .particle.mouse-trail {
+            position: fixed;
+            background-color: #f472b6;
+            animation: shrink 0.5s ease-out forwards;
+            z-index: 9998;
+        }
+        @keyframes shrink { to { width: 0; height: 0; opacity: 0; } }
+        
+        #message-text.typing::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .loader {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #FFF;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
 
-      // Golden style for 02-26, 02-27, 03-12, 03-14
-      if (["2025-02-26", "2025-02-27", "2025-03-12", "2025-03-14"].includes(date)) {
-        button.classList.add('golden-button');
-      }
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .footer-text {
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body class="text-gray-800 flex items-center justify-center min-h-screen relative">
 
-      // Red style for 03-20, 03-21, 03-22 only
-      if (["2025-03-20", "2025-03-21", "2025-03-22"].includes(date)) {
-        button.classList.add('red-button');
-      }
+    <div id="cursor-dot"></div>
+    <div id="effects-container" class="absolute top-0 left-0 w-full h-full"></div>
 
-      // 03-23, 03-24, 03-25 => default pink
-      buttonsContainer.appendChild(button);
-    });
-  </script>
+    <div class="text-center p-4 sm:p-8 max-w-3xl w-full z-10">
+        <h1 class="cursive text-7xl md:text-8xl text-white mb-6">For My Ujala</h1>
+        
+        <div id="message-container" class="message-container opacity-0 flex items-center justify-center mb-6 shadow-2xl">
+            <p id="message-text" class="text-2xl md:text-3xl text-gray-800 leading-relaxed px-4 font-medium"></p>
+        </div>
+
+        <div class="mb-6">
+             <button id="message-button" class="action-button main-button text-white font-bold rounded-full shadow-xl w-full sm:w-auto">
+                Click For a Message
+            </button>
+        </div>
+       
+        <div class="flex flex-wrap justify-center gap-3">
+            <button id="poem-button" class="action-button bg-purple-500 text-white font-bold rounded-full shadow-xl flex items-center justify-center gap-2">
+                ✨ Write a Poem
+                <span id="poem-loader" class="loader hidden"></span>
+            </button>
+            <button id="song-button" class="action-button bg-teal-500 text-white font-bold rounded-full shadow-xl flex items-center justify-center gap-2">
+                🎶 Find Our Song
+                 <span id="song-loader" class="loader hidden"></span>
+            </button>
+            <button id="thankyou-button" class="action-button bg-amber-500 text-white font-bold rounded-full shadow-xl flex items-center justify-center gap-2">
+                💌 Say Thank You
+                 <span id="thankyou-loader" class="loader hidden"></span>
+            </button>
+            <button id="future-button" class="action-button bg-indigo-500 text-white font-bold rounded-full shadow-xl flex items-center justify-center gap-2">
+                🔮 Imagine Our Future
+                 <span id="future-loader" class="loader hidden"></span>
+            </button>
+             <button id="birthday-button" class="action-button bg-pink-400 text-white font-bold rounded-full shadow-xl flex items-center justify-center gap-2">
+                🎂 Birthday Wish For You
+                 <span id="birthday-loader" class="loader hidden"></span>
+            </button>
+        </div>
+
+
+        <footer class="mt-8 text-white">
+            <p class="footer-text">Made with all my love, for you, Ujala.</p>
+        </footer>
+    </div>
+
+    <script>
+        const messages = [
+            "I love you more than words can say, Ujala.", "You are my sunshine on a cloudy day.", "Every moment with you is a treasure.", "My heart is and always will be yours, Ujala.", "You make my world a better place just by being in it.", "I fall for you more and more each day.", "You're the reason I smile, Ujala.", "Being with you is my favorite adventure.", "I love you to the moon and back.", "You are the best thing that has ever happened to me, Ujala.", "My love for you is a journey, starting at forever and ending at never.", "You are my dream come true.", "I can't imagine my life without you, Ujala.", "Your smile is the cutest thing I've ever seen.", "You make me a better person.", "I'm so lucky to have you in my life, Ujala.", "You're my person.", "I love doing life with you.", "You are my home, Ujala.", "My love for you grows stronger every day.", "You have my whole heart for my whole life.", "Every love story is beautiful, but ours is my favorite.", "You are the missing piece to my puzzle.", "I love the way you make me feel, Ujala.", "You're the one I've been waiting for.", "My day is not complete if I don't tell you I love you.", "You are my greatest adventure, Ujala.", "I love you more than coffee, and that's saying a lot.", "You're stuck with me. Lucky you!", "I'm crazy for you, Ujala.", "You're my favorite notification.", "Let's grow old and wrinkly together.", "You're the peanut butter to my jelly.", "I love you even when I'm hangry.", "We go together like cookies and milk.", "You're the cheese to my macaroni.", "I'm so glad you're as weird as me, Ujala.", "You're my favorite human bean.", "I love you more than pizza. And I really love pizza.", "You're the reason I look down at my phone and smile. And then walk into a pole.", "I knew I loved you when I realized you're just as strange as I am.", "You're the only person I would share my snacks with, Ujala.", "I love your laugh. It's my favorite sound.", "Your kindness is a balm to my soul.", "The way you care for others inspires me.", "I admire your strength and resilience, Ujala.", "You have the most beautiful mind.", "I love how passionate you are about your interests.", "You make me see the world in a more beautiful way.", "Your intelligence is so attractive, Ujala.", "I'm in awe of your creativity.", "You have a heart of gold.", "I love how you always know how to make me laugh.", "You're so thoughtful and considerate.", "I admire your ambition and drive.", "You have the most incredible energy.", "I love that I can be my complete self with you, Ujala.", "You're my best friend.", "Thank you for always listening.", "I feel so safe and comfortable with you.", "You're the most supportive partner I could ask for.", "I trust you completely.", "With you, I'm home.", "Thank you for being you, Ujala.", "You understand me like no one else.", "Our connection is my favorite thing.", "I love building our future together.", "You make even the most mundane days special.", "I'm so excited for all the memories we have yet to make.", "Every day is a gift with you, Ujala.", "I cherish every second we spend together.", "Thinking of you makes my day.", "I can't wait to see you, Ujala.", "Just hearing your voice makes me smile.", "You're on my mind.", "Dreaming of you, Ujala.", "You are my everything.", "Forever and always, you're my love.", "My love for you is endless.", "You're the light of my life.", "I'm eternally grateful for you, Ujala.", "You are a blessing in my life.", "My love for you knows no bounds.", "You are my soulmate.", "I will love you forever, Ujala.", "You have a special place in my heart.", "I'm captivated by your beauty.", "Your eyes sparkle brighter than any star.", "You're gorgeous inside and out, Ujala.", "I can't take my eyes off you.", "You are stunning.", "Your smile lights up the room.", "You're the most beautiful person I know.", "I love your sense of style.", "You are elegance and grace.", "You take my breath away, Ujala.", "I love you more than yesterday, but not as much as tomorrow.", "You are the poetry I never knew how to write, and the song my heart has always wanted to sing.", "If I had a flower for every time I thought of you, Ujala, I could walk through my garden forever.", "In a sea of people, my eyes will always search for you.", "You are the answer to every prayer I've offered.", "My six-word love story: I can't imagine life without you.", "You are my today and all of my tomorrows.", "I love you, Ujala, not only for what you are but for what I am when I am with you.", "You are the finest, loveliest, tenderest, and most beautiful person I have ever known—and even that is an understatement.", "I saw that you were perfect, and so I loved you. Then I saw that you were not perfect and I loved you even more."
+        ];
+        
+        const allActionButtons = [
+            document.getElementById('message-button'),
+            document.getElementById('poem-button'),
+            document.getElementById('song-button'),
+            document.getElementById('thankyou-button'),
+            document.getElementById('future-button'),
+            document.getElementById('birthday-button')
+        ];
+        const [messageButton, poemButton, songButton, thankyouButton, futureButton, birthdayButton] = allActionButtons;
+
+        const poemLoader = document.getElementById('poem-loader');
+        const songLoader = document.getElementById('song-loader');
+        const thankyouLoader = document.getElementById('thankyou-loader');
+        const futureLoader = document.getElementById('future-loader');
+        const birthdayLoader = document.getElementById('birthday-loader');
+
+        const messageText = document.getElementById('message-text');
+        const messageContainer = document.getElementById('message-container');
+        const effectsContainer = document.getElementById('effects-container');
+        let lastMessageIndex = -1;
+        let typingInterval;
+        let isBusy = false;
+
+        function typeMessage(message, speed = 50) {
+            return new Promise(resolve => {
+                let i = 0;
+                messageText.textContent = '';
+                messageText.classList.add('typing');
+                
+                clearInterval(typingInterval);
+                typingInterval = setInterval(() => {
+                    if (i < message.length) {
+                        messageText.textContent += message.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typingInterval);
+                        messageText.classList.remove('typing');
+                        resolve();
+                    }
+                }, speed);
+            });
+        }
+
+        function createConfetti(x, y) {
+            const colors = ['#fde68a', '#fca5a5', '#f9a8d4', '#ffffff'];
+            for (let i = 0; i < 40; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = `${x}px`;
+                confetti.style.top = `${y}px`;
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                const randomX = (Math.random() - 0.5) * 400;
+                const randomY = (Math.random() - 0.5) * 400;
+                
+                confetti.style.setProperty('--x', `${randomX}px`);
+                confetti.style.setProperty('--y', `${randomY}px`);
+                
+                effectsContainer.appendChild(confetti);
+                setTimeout(() => { confetti.remove(); }, 1000);
+            }
+        }
+        
+        async function callGeminiAPI(prompt, loaderElement) {
+            loaderElement.classList.remove('hidden');
+            
+            try {
+                let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+                const payload = { contents: chatHistory };
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) throw new Error(`API request failed`);
+
+                const result = await response.json();
+                
+                if (result.candidates?.[0]?.content?.parts?.[0]?.text) {
+                    const generatedText = result.candidates[0].content.parts[0].text;
+                    await typeMessage(generatedText.trim());
+                } else {
+                    throw new Error("Couldn't generate a response.");
+                }
+            } catch (error) {
+                console.error("Error calling Gemini API:", error);
+                await typeMessage("Sorry, the muse is sleeping. Please try again!");
+            } finally {
+                loaderElement.classList.add('hidden');
+            }
+        }
+
+        messageButton.addEventListener('click', async (e) => {
+            if(isBusy) return;
+            isBusy = true;
+            allActionButtons.forEach(btn => btn.disabled = true);
+
+            const rect = messageButton.getBoundingClientRect();
+            createConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
+
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * messages.length);
+            } while (randomIndex === lastMessageIndex);
+            
+            lastMessageIndex = randomIndex;
+            const randomMessage = messages[randomIndex];
+            
+            if (messageContainer.style.opacity === "0") {
+                 messageContainer.style.opacity = 1;
+                 messageContainer.style.transform = 'scale(1)';
+            }
+
+            await typeMessage(randomMessage);
+
+            isBusy = false;
+            allActionButtons.forEach(btn => btn.disabled = false);
+        });
+        
+        async function handleApiButtonClick(promptFn, loaderElement, loadingMessage) {
+            if (isBusy) return;
+            
+            const currentMessage = messageText.textContent.replace(/\|/g, '');
+            if (!currentMessage || currentMessage.includes("Click the button")) {
+                isBusy = true;
+                allActionButtons.forEach(btn => btn.disabled = true);
+                await typeMessage("Please get a message first!");
+                allActionButtons.forEach(btn => btn.disabled = false);
+                isBusy = false;
+                return;
+            }
+            
+            isBusy = true;
+            allActionButtons.forEach(btn => btn.disabled = true);
+            
+            await typeMessage(loadingMessage);
+            const prompt = promptFn(currentMessage);
+            await callGeminiAPI(prompt, loaderElement);
+            
+            isBusy = false;
+            allActionButtons.forEach(btn => btn.disabled = false);
+        }
+
+        poemButton.addEventListener('click', () => {
+            const promptFn = (msg) => `I'm creating a gift for my girlfriend, Ujala. You are a romantic poet. Write a short, beautiful, 4-line poem for Ujala, inspired by this phrase from me to her: '${msg}'. Make it full of love and admiration.`;
+            handleApiButtonClick(promptFn, poemLoader, "Writing a special poem for Ujala...");
+        });
+
+        songButton.addEventListener('click', () => {
+            const promptFn = (msg) => `I'm creating a gift for my girlfriend, Ujala. You are a music expert with a romantic soul. Based on the feeling of this phrase from me to her: '${msg}', suggest one perfect romantic song for us. Provide only the song title and the artist's name in the format: "Song Title" by Artist.`;
+            handleApiButtonClick(promptFn, songLoader, "Finding the perfect song for us...");
+        });
+
+        thankyouButton.addEventListener('click', () => {
+            const promptFn = (msg) => `I'm creating a gift for my girlfriend, Ujala. You are a heartfelt, romantic writer. Based on this loving phrase from me to her: '${msg}', write a short, sweet, one-sentence thank you note to Ujala expressing my gratitude for that quality or feeling.`;
+            handleApiButtonClick(promptFn, thankyouLoader, "Writing a thank you note for Ujala...");
+        });
+        
+        futureButton.addEventListener('click', () => {
+            const promptFn = (msg) => `I'm creating a gift for my girlfriend, Ujala. You are a hopeful romantic. Based on the feeling of this loving phrase from me to her: '${msg}', write a short, sweet, one-sentence vision of a happy future moment for the two of us.`;
+            handleApiButtonClick(promptFn, futureLoader, "Imagining our future together...");
+        });
+
+        birthdayButton.addEventListener('click', () => {
+            const promptFn = (msg) => `I'm creating a gift for my girlfriend, Ujala. You are a warm, loving partner. Based on the feeling of this loving phrase from me to her: '${msg}', write a short, sweet, and unique one-sentence birthday wish for Ujala.`;
+            handleApiButtonClick(promptFn, birthdayLoader, "Writing a birthday wish for Ujala...");
+        });
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.animationDuration = `${Math.random() * 7 + 8}s`;
+            heart.style.animationDelay = `${Math.random() * 5}s`;
+            effectsContainer.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 15000);
+        }
+
+        setInterval(createHeart, 300);
+
+        const cursorDot = document.getElementById('cursor-dot');
+        window.addEventListener('mousemove', e => {
+            cursorDot.style.left = `${e.clientX}px`;
+            cursorDot.style.top = `${e.clientY}px`;
+
+            let particle = document.createElement('div');
+            particle.classList.add('particle', 'mouse-trail');
+            particle.style.left = `${e.clientX}px`;
+            particle.style.top = `${e.clientY}px`;
+            particle.style.width = `${Math.random() * 5 + 5}px`;
+            particle.style.height = particle.style.width;
+            document.body.appendChild(particle);
+
+            setTimeout(() => particle.remove(), 500);
+        });
+
+        window.onload = async () => {
+             isBusy = true;
+             allActionButtons.forEach(btn => btn.disabled = true);
+             setTimeout(async () => {
+                messageContainer.style.opacity = 1;
+                messageContainer.style.transform = 'scale(1)';
+                await typeMessage("A little surprise for you, Ujala...");
+                isBusy = false;
+                allActionButtons.forEach(btn => btn.disabled = false);
+            }, 500);
+        }
+    </script>
 </body>
 </html>
