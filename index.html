@@ -15,7 +15,6 @@
             background: linear-gradient(270deg, #ffdde1, #ee9ca7, #ffdde1);
             background-size: 600% 600%;
             animation: gradient-animation 16s ease infinite;
-            cursor: default;
         }
 
         @keyframes gradient-animation {
@@ -118,24 +117,6 @@
             100% { transform: translate(var(--x), var(--y)) rotate(720deg) scale(0); opacity: 0; }
         }
         
-        #cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #f472b6;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease-out;
-        }
-        .particle.mouse-trail {
-            position: fixed;
-            background-color: #f472b6;
-            animation: shrink 0.5s ease-out forwards;
-            z-index: 9998;
-        }
-        @keyframes shrink { to { width: 0; height: 0; opacity: 0; } }
-        
         #message-text.typing::after {
             content: '|';
             animation: blink 1s step-end infinite;
@@ -167,7 +148,6 @@
 </head>
 <body class="text-gray-800 flex items-center justify-center min-h-screen relative">
 
-    <div id="cursor-dot"></div>
     <div id="effects-container" class="absolute top-0 left-0 w-full h-full"></div>
 
     <div class="text-center p-4 sm:p-8 max-w-3xl w-full z-10">
@@ -286,7 +266,8 @@
             try {
                 let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
                 const payload = { contents: chatHistory };
-                const apiKey = "AIzaSyBUL5uZihKRaWHQ3aBqfQlioVEbMXy8QhI";
+                // IMPORTANT: Replace "" with your actual API key for deployment
+                const apiKey = "AIzaSyBUL5uZihKRaWHQ3aBqfQlioVEbMXy8QhI"; 
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
                 
                 const response = await fetch(apiUrl, {
@@ -344,7 +325,7 @@
             if (isBusy) return;
             
             const currentMessage = messageText.textContent.replace(/\|/g, '');
-            if (!currentMessage || currentMessage.includes("Click the button")) {
+            if (!currentMessage || currentMessage.includes("Click the button") || currentMessage.includes("A little surprise")) {
                 isBusy = true;
                 allActionButtons.forEach(btn => btn.disabled = true);
                 await typeMessage("Please get a message first!");
@@ -400,22 +381,6 @@
         }
 
         setInterval(createHeart, 300);
-
-        const cursorDot = document.getElementById('cursor-dot');
-        window.addEventListener('mousemove', e => {
-            cursorDot.style.left = `${e.clientX}px`;
-            cursorDot.style.top = `${e.clientY}px`;
-
-            let particle = document.createElement('div');
-            particle.classList.add('particle', 'mouse-trail');
-            particle.style.left = `${e.clientX}px`;
-            particle.style.top = `${e.clientY}px`;
-            particle.style.width = `${Math.random() * 5 + 5}px`;
-            particle.style.height = particle.style.width;
-            document.body.appendChild(particle);
-
-            setTimeout(() => particle.remove(), 500);
-        });
 
         window.onload = async () => {
              isBusy = true;
